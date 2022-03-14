@@ -3,8 +3,8 @@ const btnResetForm = document.getElementById('reset-form');
 btnResetForm.style.display = 'none';
 
 
-
 const submitProcess = document.getElementById('submit-process');
+
 
 const validateInputString = document.getElementById('input-string');
 
