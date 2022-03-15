@@ -1,9 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import AddRecord from '../views/AddRecord.vue'
-import UpdateRecord from '../views/UpdateRecord.vue'
-
-
+import { createRouter, createWebHistory } from 'vue-router';
+import Home from '../views/Home.vue';
+import AddRecord from '../views/AddRecord.vue';
+import UpdateRecord from '../views/UpdateRecord.vue';
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
@@ -16,5 +14,4 @@ const router = createRouter({
   routes
 })
 
-export default router
-
+export default router;
