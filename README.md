@@ -14,6 +14,8 @@ https://www.figma.com/proto/x7r5dPiBHYcbj96jEP8CeD/Aplications-projects?node-id=
 
 4. Consumo API
 
+El CRUD se construyo con Vue 3
+
 https://sergioriveraflor.com/dms/test-api/
 
 5. Formulario web
