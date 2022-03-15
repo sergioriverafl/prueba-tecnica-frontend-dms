@@ -5,7 +5,7 @@
 
       <div class="container mx-auto px-3 flex gap-4 items-center justify-between">
         <div class="flex gap-x-2 items-center font-bold text-gray-700">
-          <a href="javascript:history.back()">
+          <a href="javascript:history.back()" name="go-back" id="go-back" aria-label="Volver átras">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
               stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
@@ -104,7 +104,7 @@
               </div>
             </div>
 
-            <button type="submit" id="create-record"
+            <button type="submit" id="create-record" name="create-record" aria-label="Guardar nuevo registro"
               class="flex items-center gap-2 px-3 py-1 bg-sky-500 rounded-md text-white font-semibold w-32">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
@@ -135,18 +135,25 @@ export default {
     },
     data() {
       return {
-        detailsRecord: [],
+        detailsRecord: {
+          "name": "",
+          "phone": "",
+          "email": "",
+          "address": "",
+          "postalZip": "",
+          "region": "",
+          "country": "",
+          "list": "",
+          "text": "",
+          "numberrange": "",
+          "currency": "",
+          "alphanumeric": ""
+        },
       }
     },
     mounted: function () {
-      this.uuidv4();
     },
     methods: {
-      uuidv4() {
-        // Por definir norma para algoritmo que genere de forma automatica el campo ALFANUMERIC //
-        this.detailsRecord.alphanumeric = '';
-      },
-
       saveNewRecord() {
         fetch(`https://webapi.dms.ms/api/test/`, {
           method: 'POST',
@@ -158,7 +165,7 @@ export default {
         .then(response => response.json())
         .then((data) => {
 
-          if( data.length > 5 ){
+          if( data.address ){
 
               swal("Alerta!", "Registro guardado correctamente", "success")
               .then(()=> {

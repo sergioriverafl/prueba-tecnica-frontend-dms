@@ -4,7 +4,7 @@
 
       <div class="container mx-auto px-3 flex gap-4 items-center justify-between">
         <div class="flex gap-x-2 items-center font-bold text-gray-700">
-          <a href="javascript:history.back()">
+          <a href="javascript:history.back()" id="go-back" name="go-back" aria-label="Volver átras">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
@@ -90,13 +90,13 @@
             </div>
 
             <div class="flex gap-3" v-if="isLoadedResult">
-              <button type="submit" id="update-record" class="flex items-center gap-2 px-3 py-1 bg-sky-500 rounded-md text-white font-semibold w-48">
+              <button type="submit" id="update-record" name="update-record" aria-label="Actualizar registro" class="flex items-center gap-2 px-3 py-1 bg-sky-500 rounded-md text-white font-semibold w-48">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
                 Guardar cambios
               </button>
-              <button @click="confirmDeleteRecord"  id="delete-record" type="button" class="flex items-center gap-2 px-3 py-1 bg-gray-500 rounded-md text-white font-semibold w-54">
+              <button @click="confirmDeleteRecord"  id="delete-record" name="delete-record" aria-label="Eliminar registro" type="button" class="flex items-center gap-2 px-3 py-1 bg-gray-500 rounded-md text-white font-semibold w-54">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                 </svg>
@@ -127,7 +127,7 @@ import swal from 'sweetalert';
   },
   data() {
     return {
-      detailsRecord: [],
+      detailsRecord: {},
       isLoadedResult: false,
     }
   },
@@ -142,6 +142,9 @@ import swal from 'sweetalert';
 
       fetch(`https://webapi.dms.ms/api/test/${this.$route.params.id_record}`, {
         method: 'GET',
+        headers: {
+          "Content-Type": "text/plain;charset=UTF-8"
+        },
       })
       .then(response => response.json())
       .then((data) => {

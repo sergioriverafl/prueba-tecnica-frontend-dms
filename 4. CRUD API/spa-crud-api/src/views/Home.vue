@@ -6,7 +6,7 @@
 
     <div class="flex gap-4 items-center justify-between">
       <div class="flex gap-2">
-        <a @click="deletRecordsDlected" v-if=" selectedForDelete.length > 0" class="flex gap-2 items-center px-3 py-1 bg-gray-400 rounded-md text-white font-semibold cursor-pointer">
+        <a @click="deletRecordsDlected" v-if=" selectedForDelete.length > 0" id="delete-records-selected" name="delete-records-selected" aria-label="Eliminar registros seleccionados" class="flex gap-2 items-center px-3 py-1 bg-gray-400 rounded-md text-white font-semibold cursor-pointer">
           <svg
             xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
@@ -17,13 +17,13 @@
       </div>
 
       <div class="flex gap-2 items-center">
-        <button @click="getRecords" class="flex gap-2 items-center px-3 py-1 bg-gray-400 rounded-md text-white font-semibold cursor-pointer">
+        <button @click="getRecords" id="reload-records" name="reload-records"  aria-label="Refrescar registros" class="flex gap-2 items-center px-3 py-1 bg-gray-500 rounded-md text-white font-semibold cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round"   stroke-linejoin="round"   d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
           </svg>
         </button>
 
-        <router-link to="/add-record/" class="flex gap-2 items-center px-3 py-1 bg-sky-500 rounded-md text-white font-semibold">
+        <router-link to="/add-record/" id="add-record" name="add-record" aria-label="Agregar registro" class="flex gap-2 items-center px-3 py-1 bg-sky-600 rounded-md text-white font-semibold">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
           </svg>
@@ -38,7 +38,7 @@
         <thead class="divide-y divide-slate-200">
           <tr class="text-gray-600 bg-gray-100">
             <th class="font-semibold tracking-wide text-center px-2 py-2 w-16">
-              <input type="checkbox" v-model="selectAllValue" @click="selectAllValue = !selectAllValue, selectAll()"/>
+              <input type="checkbox" id="select-all-data" name="select-all-data" v-model="selectAllValue" @click="selectAllValue = !selectAllValue, selectAll()"/>
             </th>
             <th class="truncate font-semibold tracking-wide text-left border-r border-gray-300 px-2 py-2">Nombres</th>
             <th class="truncate font-semibold tracking-wide text-left border-r border-gray-300 px-2 py-2">Teléfono</th>
@@ -56,10 +56,16 @@
         <tbody class="divide-y divide-slate-200 font-light text-sm">
           <tr class="text-gray-600 hover:bg-gray-50" v-for="(data, index) in recordsList" :key="index">
             <td class="px-2 py-2 whitespace-nowrap w-16 text-center" scope="row">
-              <input type="checkbox" class="form-control" v-model="data.isSelected" @click="data.isSelected = !data.isSelected; selectRecordDelete(index, data.isSelected)"/>
+              <input type="checkbox" class="form-control" :id="'select-data-'+index" :name="'select-data-'+index" v-model="data.isSelected" @click="data.isSelected = !data.isSelected; selectRecordDelete(index, data.isSelected)"/>
             </td>
-            <td class="px-2 py-2 whitespace-nowrap text-sky-500 font-bold hover:underline">
-              <router-link :to="'/update-record/' + data.alphanumeric">{{ data.name || data.alphanumeric }}</router-link>
+            <td class="px-2 py-2 whitespace-nowrap">
+              <router-link
+                :to="'/update-record/' + data.alphanumeric"
+                aria-label="Ver detalles del registro"
+                :id="'go-record-data-'+index"
+                :name="'go-record_'+index"
+                class="text-sky-700 font-bold hover:underline"
+                >{{ data.name || data.alphanumeric }}</router-link>
             </td>
             <td class="px-2 py-2 whitespace-nowrap">{{ data.phone }}</td>
             <td class="px-2 py-2 whitespace-nowrap">{{ data.email }}</td>
