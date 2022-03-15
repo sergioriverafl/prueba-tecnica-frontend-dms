@@ -7,7 +7,7 @@
             <h1 class="hidden md:flex font-bold text-white text-xl">CRUD API</h1>
         </router-link>
 
-        <a href="https://github.com/sergioriverafl/prueba-tecnica-frontend-dms" target="new" class="flex gap-3 items-center" title="Ir al código del proyecto">
+        <a href="https://github.com/sergioriverafl/prueba-tecnica-frontend-dms" target="new" class="flex gap-3 items-center" title="Ir al código del proyecto en GitHub">
           <img src="./assets/git-hub.svg" class="h-7 w-7" alt="Enlace al repositorio de @sergioriverafl en GitHub del CRUD API" title="Ir al código del proyecto de @sergioriverafl">
           / 4. CRUD API
         </a>
